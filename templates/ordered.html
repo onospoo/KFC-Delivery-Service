@@ -1,0 +1,24 @@
+{% extends 'main.html' %}
+{% load static %}
+
+
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-sm-offset-3">
+            <div class="alert alert-success">
+                <a href="{% url "shop:ProductList" %}" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×</a>
+               <span class="glyphicon glyphicon-ok"></span> <strong>Спасибо за заказ!</strong>
+                <hr class="message-inner-separator">
+                <p>
+                    Номер вашего заказа: #{{ order.id }}</p>
+                <p>К оплате: {{ tot }}</p>
+                <p>Ожидайте, оператор свяжется с вами.</p>
+            </div>
+        </div>
+        </div>
+    </div>
+{% endblock %}
+}

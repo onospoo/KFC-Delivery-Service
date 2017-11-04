@@ -1,0 +1,83 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+    <form class="order-form" action="." method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <a href="{% url "cart:OrderList" %}" class="col-sm-1 btn btn-default">Назад</a>
+        <button type="submit" class="col-sm-1 btn btn-primary">Обновить</button>
+    </div>
+    <div class="form-group col-sm-10">
+        <label for="id_adress" class="col-sm-1 control-label">Cтатус:</label>
+        <div class="col-sm-3 order-field">
+            {{ form.order_status }}
+        </div>
+
+        <label for="id_adress" class="col-sm-1 control-label">Курьер:</label>
+        <div class="col-sm-3 order-field">
+            {{ form.courier }}
+        </div>
+    </div>
+
+    </form>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th class="col-sm-1">ID заказа</th>
+          <th class="col-sm-2">Имя</th>
+          <th class="col-sm-2">Номер</th>
+          <th class="col-sm-1">К оплате</th>
+          <th class="col-sm-1">Прибыль</th>
+          <th class="col-sm-1">Цена покупки</th>
+        </tr>
+      </thead>
+
+      <tbody>
+{#          <form class="order-form" action="." method="post">#}
+          <tr>
+              <td class="col-sm-1">#{{ orders.id }}</td>
+              <td class="col-sm-2">{{ orders.name }}</td>
+              <td class="col-sm-2">{{ orders.number }}</td>
+              <td class="col-sm-1">{{ total_price }}</td>
+              <td class="col-sm-1">{{ difference }}</td>
+              <td class="col-sm-1">{{ total_original }}</td>
+
+{#                  {% csrf_token %}#}
+{#              <td class="col-xs-2">{{ form.order_status }}</td>#}
+{#              <td class="col-xs-2">#}
+{#                  {{ form.courier }}#}
+{#              </td>#}
+
+          </tr>
+{#          <button type="submit" class="btn btn-primary">Обновить</button>#}
+{#          <a href="{% url "cart:OrderList" %}" class="btn btn-default">Назад</a>#}
+{#          </form>#}
+      </tbody>
+    </table>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>
+            Список товаров
+          </h4>
+        </div>
+        <table class="table table-fixed">
+          <thead>
+            <tr>
+              <th class="col-xs-4">Название</th><th class="col-xs-3">Цена</th><th class="col-xs-3">Оригинальная цена</th><th class="col-xs-3">Количество</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for item in order_item %}
+            <tr>
+              <td class="col-xs-4">{{ item.product.name}}</td><td class="col-xs-3">{{ item.product.price }}</td><td class="col-xs-3">{{ item.product.original_price }}</td><td class="col-xs-3">{{ item.quantity }}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+{% endblock %}

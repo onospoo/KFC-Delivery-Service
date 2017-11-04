@@ -1,0 +1,95 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Доставка KFC в Новосибирске</title>
+      <link rel="stylesheet" href="{% static "css/Footer-white.css" %}">
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "css/main.css" %}">
+  </head>
+  <body>
+    <header>
+    	<div class="container-fluid">
+			<div class="row zsx">
+				<div class="col-sm-12 animated lightSpeedIn headS">
+					<div class="vcenter">
+					<h1><img src="{% static "img/kfc-logo-481740F210-seeklogo.com.png" %}" alt="" class="logo"> Delivery KFC Novosibirsk</h1>
+					<!--<h3>Everything explosion related</h3>-->
+					</div>
+				</div>
+			</div>
+		</div>
+    </header>
+        <nav class="navbar navbar-inverse navbar-static-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				</button>
+
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navm">
+				    <li class="navl"><a href="{% url "shop:index" %}">Главная</a></li>
+					<li class="navl"><a href="{% url "shop:ProductList" %}">Меню</a></li>
+					<li class="navl"><a href="{% url "shop:ContactsList" %}">Контакты</a></li>
+				</ul>
+                <ul class="nav navbar-nav navbar-right navm">
+                    <li class="navl">
+                        <a href="{% url "cart:CartDetail" %}">
+                            <i class="fa fa-shopping-basket" aria-hidden="true"></i> Корзина <span class="label label-default">
+                            {% with total_items=cart|length %}
+                                {% if cart|length > 0 %}
+                                        {{ cart.get_total_price }} руб
+                                 {% else %}
+                                      0
+                                {% endif %}
+                            {% endwith %}
+                            </span>
+                        </a>
+
+                    </li>
+                </ul>
+            </div>
+		</div>
+	    </nav>
+    <div class="content">
+    {% block content %}
+
+    {% endblock content %}
+    </div>
+        <footer id="myFooter">
+{#            <div class="container">#}
+{#            <p class="footer-copyright">© 2016 Copyright Text</p>#}
+{#            </div>#}
+            <div class="footer-social">
+                <a href="#" class="social-icons"><i class="fa fa-vk"></i></a>
+                <a href="#" class="social-icons"><i class="fa fa-instagram"></i></a>
+            </div>
+        </footer>
+{#    <footer class="footer">#}
+{#      <div class="container">#}
+{#          <p>priv</p>#}
+{#              <a href='#'><i class="fa fa-twitch fa-3x fa-fw"></i></a>#}
+{#              <a href='#'><i class="fa fa-facebook fa-3x fa-fw"></i></a>#}
+{#              <a href='#'><i class="fa fa-twitter fa-3x fa-fw"></i></a>#}
+{#              <a href='#'><i class="fa fa-youtube-play fa-3x fa-fw"></i></a>#}
+{#              <a href='#'><i class="fa fa-rss fa-3x fa-fw"></i></a>#}
+{#              <a href='#'><i class="fa fa-vine fa-3x fa-fw"></i></a>#}
+{#              <a href='#'><i class="fa fa-flickr fa-3x fa-fw"></i></a>#}
+{#              <a href='#'><i class="fa fa-linkedin fa-3x fa-fw"></i></a>#}
+{##}
+{#      </div>#}
+{#    </footer>#}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/script.js" %}"></script>
+  </body>
+</html>

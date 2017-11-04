@@ -1,0 +1,266 @@
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css") all;
+/* Google-Fonts */
+@import url("https://fonts.googleapis.com/css?family=Buenard:700") all;
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+html {
+    height: 100%;
+}
+
+body {
+    background: #ececec;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    height: 100%;
+}
+
+.content{
+   flex: 1 0 auto;
+   -webkit-flex: 1 0 auto;
+   min-height: 200px;
+}
+
+#myFooter{
+    padding-top:32px;
+    background-color: #111;
+    flex: 0 0 auto;
+    -webkit-flex: 0 0 auto;
+}
+
+#myFooter .footer-copyright{
+    margin-bottom: 35px;
+    text-align: center;
+    color: #777;
+}
+
+#myFooter ul{
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 18px;
+}
+
+#myFooter a{
+    color: #282b2d;
+    font-size: 18px;
+}
+
+#myFooter li{
+    display: inline-block;
+    margin: 0px 15px;
+    line-height: 2;
+}
+
+#myFooter .footer-social{
+    text-align: center;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    background-color: #111;
+}
+
+#myFooter .fa{
+    font-size: 36px;
+    margin-right: 15px;
+    margin-left: 20px;
+    background-color: white;
+    color: #d0d0d0;
+    border-radius: 51%;
+    padding: 10px;
+    height: 60px;
+    width: 60px;
+    text-align: center;
+    line-height: 43px;
+    text-decoration: none;
+    transition:color 0.2s;
+}
+
+#myFooter .fa-vk:hover{
+   color: #2b55ff;
+}
+
+#myFooter .fa-vk:focus{
+    color: #2b55ff;
+}
+
+#myFooter .fa-instagram:hover{
+    color: #db345e;
+}
+
+#myFooter .fa-instagram:focus{
+    color: #db345e;
+}
+
+.zsx {
+background-color: darkred;
+}
+
+.zsx h1, .zsx h3{
+text-align:center;
+color:#fff;
+}
+
+.zsx h1{
+font-size:70px;
+font-family:'Buenard', serif;
+font-weight:bold;
+text-transform:inherit;
+margin: 0px auto 0px;
+text-shadow: 2px 2px 2px #000;
+-webkit-text-shadow: 2px 2px 2px #000;
+-moz-text-shadow: 2px 2px 2px #000;
+}
+
+.zsx h3{
+font-size: 25px;
+font-weight:lighter;
+margin: 0px auto 15px;
+}
+
+.navh {
+    background-color: white;
+    border-color:black;
+}
+
+/*.footer {*/
+      /*position: absolute;*/
+      /*bottom: 0;*/
+      /*width: 100%;*/
+      /*height: 60px;*/
+      /*background-color: #111;*/
+/*}*/
+
+
+.navl {
+    font-size: 22px;
+    font-family:'Buenard', serif;
+}
+
+.thumbnail {
+    padding:0;
+}
+
+.headS {
+    padding-top:20px; 
+    padding-bottom:20px;
+}
+
+.logo {
+     width: 10%;
+     height: 10%;
+}
+
+
+.navbar-inverse .navbar-nav > li > a {
+    color: white;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+    color: whitesmoke;
+    background-color: #B22222;
+}
+
+.list-group {
+    border-color:black;
+}
+
+
+.list-group-item.active {
+    color: whitesmoke;
+    background-color: #B22222;
+    border-color: white;
+}
+
+.list-group-item.active:hover,
+.list-group-item.active:focus {
+    color: whitesmoke;
+    background-color: #B22222;
+    border-color: white;
+}
+
+
+a.list-group-item {
+    color: black;
+    font-size: 20px;
+}
+
+a.list-group-item:hover,
+a.list-group-item:focus {
+    color: black;
+    background-color: #A9A9A9;
+}
+
+img {
+ height: auto;
+ max-width: 100%;
+}
+            		
+.product {
+ background: #fff none repeat scroll 0 0;
+ border: 1px solid #c0c0c0;
+ height: 340px;
+ overflow: hidden;
+ padding: 25px 15px;
+ position: relative;
+ text-align: center;
+ transition: all 0.5s ease 0s;
+ margin-bottom: 20px;
+}
+.product:hover {
+ box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
+}
+.product-img {
+ height: 145px;
+}
+.product-title a {
+ color: #000;
+ font-family: Roboto;
+ font-size: 20px;
+}
+.product-desc {
+ max-height: 60px;
+ overflow: hidden;
+}
+.product-price {
+ bottom: 60px;
+ left: 0px;
+ position: absolute;
+ width: 100%;
+ color: #d51e08;
+ font-size: 18px;
+ font-weight: 500;
+}
+
+.product-form {
+    left: 13px;
+    position:absolute;
+    bottom: 15px;
+    width: 100%;
+}
+
+/*.basket-container{*/
+    /*width: 400px;*/
+/*}*/
+/*.basket-items{*/
+    /*width: 100%;*/
+/*}﻿*/
+
+/*ul.nav li.dropdown:hover ul.dropdown-menu{*/
+/*display: block;*/
+/*margin: 0;*/
+/*}*/
+/*a.menu:after, .dropdown-toggle:after {*/
+/*content: none;*/
+/*}*/
+
+.container-order {
+    background-color: White;
+    border-color: #000;
+    border: 1px solid;
+}
+
+.order-marg {
+    margin-top: 10px;
+}
+

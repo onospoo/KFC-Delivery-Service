@@ -1,0 +1,161 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="container">
+          <div class="row">
+              <div class="col-sm-12 col-md-10 col-md-offset-1">
+                  <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Заказ</th>
+                        <th>Количество</th>
+                        <th class="text-center">Цена</th>
+                        <th class="text-center">Сумма</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart %}
+                    {% with product=item.product %}
+                    <tr>
+                        <td class="col-sm-8 col-md-6">
+                        <div class="media">
+                            <a class="thumbnail pull-left"> <img class="media-object" src="{{ product.img.url }}" style="width: 90px; height: 72px;"> </a>
+                            <div class="media-body">
+                                <h4 class="media-heading">{{ product.name }}</h4>
+                                <h5 class="media-heading">{{ product.description }}</h5>
+                            </div>
+                        </div></td>
+                        <td class="col-sm-1 col-md-1" style="text-align: center">
+                            <form action="{% url "cart:CartAdd" product.id %}" method="post" class="add">
+                                            {{ item.update_quantity_form.quantity }}
+                                            {{ item.update_quantity_form.update }}
+                                            {% csrf_token %}
+                                            <button class="btn btn-success" type="submit">Обновить</button>
+                            </form>
+                        </td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>{{ item.price }}</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>{{ item.total_price }}</strong></td>
+                        <td class="col-sm-1 col-md-1">
+                        <a href="{% url "cart:CartRemove" product.id %}" type="button" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove"></span> Удалить
+                        </a></td>
+                    </tr>
+                    {% endwith %}
+                    {% endfor %}
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>{{ cart.get_original_price}} {{ cart.get_dif }}</td>
+                        <td><h3>Итого</h3></td>
+                        <td class="text-right"><h3><strong>{{ cart.get_total_price}}</strong></h3></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+        </div>
+
+    </div>
+    <hr>
+    <div class="container">
+        <div class="row" style="margin-top:10px;">
+            <div class="col-md-6 col-md-offset-3">
+             <form class="form-horizontal order-form" action="." method="post">
+                 {% csrf_token %}
+                 {{ form.non_field_errors }}
+                    <fieldset>
+                    <legend>Оформление заказа</legend>
+                     <div class="form-group">
+                     {{ form.payment_status.errors }}
+                     <label for="id_payment_status" class="col-sm-5 control-label">Выберите способ оплаты:</label>
+                        <div class="col-sm-7">
+                         {% for radio in form.payment_status %}
+                         <label class="radio-inline">{{ radio }}</label>
+                         {% endfor %}
+                        </div>
+
+                     </div>
+                         <div class="form-group">
+                             {{ form.name.errors }}
+                             <label for="id_name" class="col-sm-2 control-label">Имя:</label>
+                             <div class="col-sm-10 order-field">
+                                {{ form.name }}
+                             </div>
+                         </div>
+                         <div class="form-group">
+                             {{ form.number.errors }}
+                             <label for="id_number" class="col-sm-2 control-label">Номер:</label>
+                             <div class="col-sm-10 order-field">
+                                {{ form.number }}
+                             </div>
+                         </div>
+                         <div class="form-group">
+                             {{ form.district.errors}}
+                             <label for="id_number" class="col-sm-2 control-label">Район:</label>
+                             <div class="col-sm-10 order-field">
+                                {{ form.district }}
+                             </div>
+                         </div>
+                         <div class="form-group">
+                             {{ form.adress.errors }}
+                             <label for="id_adress" class="col-sm-2 control-label">Улица:</label>
+                             <div class="col-sm-4 order-field">
+                             {{ form.adress }}
+                             </div>
+
+                             {{ form.adress_number.errors }}
+                             <label for="id_adress_number" class="col-sm-2 control-label">Дом:</label>
+                             <div class="col-sm-4 order-field">
+                             {{ form.adress_number }}
+                             </div>
+                         </div>
+                         <div class="form-group">
+                             {{ form.apartment.errors }}
+                             <label for="id_apartment" class="col-sm-2 control-label">Квартира:</label>
+                             <div class="col-sm-2 order-field">
+                             {{ form.apartment }}
+                             </div>
+                             {{ form.entrance.errors }}
+                             <label for="id_entrance" class="col-sm-2 control-label">Подъезд:</label>
+                             <div class="col-sm-2 order-field">
+                             {{ form.entrance }}
+                             </div>
+                             {{ form.floor.errors }}
+                             <label for="id_floor" class="col-sm-2 control-label">Этаж:</label>
+                             <div class="col-sm-2 order-field">
+                             {{ form.floor }}
+                             </div>
+
+                         </div>
+                     <div class="order-marg text-center">
+                         <a class="btn btn-default btn-primary" id="close_date" role="button" type="reset" onclick="document.getElementById('id_date_order_day').value='';document.getElementById('id_date_order_month').value='';document.getElementById('id_date_order_year').value='';document.getElementById('id_time_order').value='';">Ближайшее время</a>
+                         <a class="btn btn-default" id="show_date" role="button">Выбор времени</a>
+                     </div>
+                     <br>
+                     <div class="order-marg hidden" id="date-order">
+                         <div class="form-group order-field">
+                             {{ form.time_order.errors }}
+                             <label for="id_time_order" class="col-sm-2 control-label">Время:</label>
+                             <div class="col-sm-10 order-field">
+                             {{ form.time_order }}
+                             </div>
+                         </div>
+
+                         <div class="form-group">
+                             {{ form.date_order.errors }}
+                             <label for="id_date_order" class="col-sm-2 control-label">Дата:</label>
+                             <div class="col-sm-10 order-field">
+                             {{ form.date_order }}
+                             </div>
+                         </div>
+
+                     </div>
+                 <input type="submit" value="Отправить" class="col-sm-offset-3 col-sm-6 btn btn-danger order-marg" style="margin-bottom: 15px;">
+                 </fieldset>
+             </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

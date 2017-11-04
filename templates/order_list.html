@@ -1,0 +1,31 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID заказа</th>
+          <th>Имя</th>
+          <th>Номер</th>
+          <th>Статус</th>
+          <th>Курьер</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in orders %}
+          <tr>
+              <td><a href="{{ order.get_absolute_url }}">{{ order.id }}</a></td>
+              <td>{{ order.name }}</td>
+              <td>{{ order.number }}</td>
+              <td>{{ order.order_status }}</td>
+              <td>{{ order.courier }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    </div>
+</div>
+{% endblock %}

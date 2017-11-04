@@ -1,0 +1,16 @@
+{% load static %}
+
+{% for item in order %}
+    <table>
+        <tr>
+            <th>{{ item.name }}</th>
+            <th>
+                 <form action="" method="post" class="add">
+                     {% csrf_token %}
+                     {{ item.aye.order_status }}
+                     <input type="submit" value="Обновить">
+                 </form>
+            </th>
+        </tr>
+    </table>
+{% endfor %}

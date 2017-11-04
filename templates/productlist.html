@@ -1,0 +1,47 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+          <div class="row">
+           <div class="col-md-3">
+              <div class="list-group">
+                <a href="{% url "shop:ProductList" %}" {% if not category %} id="cat_act" {% endif %} class="list-group-item">
+                    Все
+                </a>
+                {% for cat in categories %}
+                <a href="{{ cat.get_absolute_url }}" class="list-group-item" {% if category.slug == cat.slug %} id="cat_act" {% endif %}>
+                    {{ cat.name }}
+                </a>
+                {% endfor %}
+             </div>
+           </div>
+           <div class="col-md-8 products">
+               <div class="row">
+                   {% for product in products%}
+                   <div class="col-sm-4">
+                       <div class="product">
+                           <div class="product-img">
+                               <a href="#"><img src="/media/{{ product.img }}" alt=""></a>
+                           </div>
+                           <p class="product-title">
+                               <a href="#">{{ product.name }}</a>
+                           </p>
+                           <p class="product-desc">{{ product.description }}</p>
+                           <p class="product-price">{{ product.price }} Р</p>
+                           <form action="{% url "cart:CartAddList" product.id %}" method="post" class="form-inline product-form">
+                               {% csrf_token %}
+                               <div class="form-group">
+                               {{ cart_product_form.quantity }}
+                               {{ cart_product_form.update }}
+                               <input class="btn btn-danger form-control" id="submit_btn" type="submit" value="В корзину">
+                               </div>
+                           </form>
+                       </div>
+                   </div>
+                   {% endfor %}
+               </div>
+           </div>
+      </div>
+    </div>
+{% endblock content %}

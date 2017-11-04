@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-2">
+            <h1>Адреса магазинов:</h1>
+            {% for adress in adress_list %}
+                <h3 style="text-align: center;">{{ adress.adress }}</h3>
+                <br>
+            {% endfor %}
+        </div>
+        <div class="col-sm-2">
+        <h1>Номера телефонов:</h1>
+            {% for number in number_list %}
+            <p style="text-align: center;">{{ number.number }}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
